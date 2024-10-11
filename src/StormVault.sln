@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StormVault.Core", "StormVault.Core\StormVault.Core.csproj", "{9146922C-F340-435B-8FF5-DBBD3E1260E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StormVault.Tests", "StormVault.Tests\StormVault.Tests.csproj", "{F6CC499F-F7AF-45AA-AE1E-176D8222CF0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StormVault.CLI", "StormVault.CLI\StormVault.CLI.csproj", "{1ADDACBB-3B35-4BFD-BCBD-EFE9BEED1EAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9146922C-F340-435B-8FF5-DBBD3E1260E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9146922C-F340-435B-8FF5-DBBD3E1260E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9146922C-F340-435B-8FF5-DBBD3E1260E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9146922C-F340-435B-8FF5-DBBD3E1260E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CC499F-F7AF-45AA-AE1E-176D8222CF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CC499F-F7AF-45AA-AE1E-176D8222CF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CC499F-F7AF-45AA-AE1E-176D8222CF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CC499F-F7AF-45AA-AE1E-176D8222CF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADDACBB-3B35-4BFD-BCBD-EFE9BEED1EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADDACBB-3B35-4BFD-BCBD-EFE9BEED1EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADDACBB-3B35-4BFD-BCBD-EFE9BEED1EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADDACBB-3B35-4BFD-BCBD-EFE9BEED1EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
