@@ -15,6 +15,9 @@ class AddPassword : DefaultVault {
   /* [Option("--value")] */
   /* public string Value { get; set; } = null!; */
 
+  [Option("-n", Description = "Dont try to trim white space of end ot the secret")]
+  public bool NoTrim { get; set; }
+
   [Required]
   [Option("-f", Description = "File that contains secret")]
   public FileInfo SecretFile { get; set; } = new FileInfo(
@@ -31,6 +34,10 @@ class AddPassword : DefaultVault {
     reader.Read(bytes);
 
     var str = Encoding.UTF8.GetString(bytes); 
+
+    if(NoTrim)
+      return str;
+    
     return str.Trim();
   }
 
