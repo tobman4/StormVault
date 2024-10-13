@@ -13,15 +13,16 @@ abstract class AppCommand {
   internal static InvocationContext Context = null!;
 
   private readonly Dictionary<PropertyInfo,Option> _options = new();
+  private readonly Dictionary<PropertyInfo,Argument> _arguments = new();
 
   private void LoadArguments() {
     var classType = this.GetType();
     foreach(var prop in classType.GetProperties()) {
-      if(prop.GetCustomAttribute<OptionAttribute>() is OptionAttribute attr)
-        AddProp(prop,attr);
+      if(prop.GetCustomAttribute<OptionAttribute>() is OptionAttribute optAttr)
+        AddProp(prop,optAttr);
       
-      //TODO: Argument
-
+      if(prop.GetCustomAttribute<ArgumentAttribute>() is ArgumentAttribute argAttr)
+        AddArg(prop,argAttr);
     }
   }
 
@@ -45,11 +46,33 @@ abstract class AppCommand {
     _options.Add(prop,opt);
   }
 
+  public void AddArg(PropertyInfo prop, ArgumentAttribute attr) {
+    if(_arguments.ContainsKey(prop))
+      return;
+
+    var argType = typeof(Argument<>).MakeGenericType(prop.PropertyType);
+    var argObj = Activator.CreateInstance(argType, [
+      attr.Name, attr.Description
+   ]);
+
+    if(argObj is not Argument arg)
+      throw new Exception($"Faild to create argument {attr.Name}");
+
+    if(prop.GetValue(this) is object def)
+      arg.SetDefaultValue(def);
+    _arguments.Add(prop,arg);
+  }
+
   protected abstract Task<int> InvokeAsync();
   private Task<int> _run() {
 
     foreach(var kv in _options) {
       var value = Context.ParseResult.GetValueForOption(kv.Value);
+      kv.Key.SetValue(this,value);
+    }
+
+    foreach(var kv in _arguments) {
+      var value = Context.ParseResult.GetValueForArgument(kv.Value);
       kv.Key.SetValue(this,value);
     }
 
@@ -72,6 +95,9 @@ abstract class AppCommand {
 
     LoadArguments();
     foreach(var kv in _options)
+      command.Add(kv.Value);
+
+    foreach(var kv in _arguments)
       command.Add(kv.Value);
 
     return command;
