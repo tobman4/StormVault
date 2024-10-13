@@ -7,8 +7,7 @@ namespace StormVault.CLI.Commands;
 [Command("add")]
 class AddPassword : DefaultVault {
   
-  [Required]
-  [Option("--name")]
+  [Argument("name")]
   public string Name { get; set; } = null!;
 
   /* [Required] */
